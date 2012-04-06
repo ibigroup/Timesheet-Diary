@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Ibi.TimesheetDiary.Project>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            ProjectCode
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { projectCode = item.ProjectCode }) |
+            @Html.ActionLink("Details", "Details", new { projectCode = item.ProjectCode }) |
+            @Html.ActionLink("Delete", "Delete", new { projectCode = item.ProjectCode })
+        </td>
+    </tr>
+}
+
+</table>
