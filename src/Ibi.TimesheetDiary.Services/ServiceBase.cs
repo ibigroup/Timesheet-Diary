@@ -19,7 +19,7 @@ namespace Ibi.TimesheetDiary.Services
         /// <summary>
         /// Local instance of a <see cref="IDataContext"/> implementation.
         /// </summary>
-        protected readonly IDataContext DataContext;
+        public readonly IDataContext DataContext;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceBase"/> class.

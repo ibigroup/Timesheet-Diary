@@ -94,7 +94,7 @@ namespace Ibi.TimesheetDiary.Web.Mvc.Controllers
                     project.SubProjects.Add(newSubProject);
                     this.projectServices.SaveProject(project);
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", new { projectCode });
                 }
             }
             catch (Exception e)
@@ -145,7 +145,7 @@ namespace Ibi.TimesheetDiary.Web.Mvc.Controllers
                     if (TryUpdateModel(project, null, null, new[] { "Project" }))
                     {
                         this.projectServices.SaveSubProject(project);
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Index", new { projectCode });
                     }
 
                     return View(project);

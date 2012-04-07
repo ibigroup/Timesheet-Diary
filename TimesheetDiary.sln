@@ -35,6 +35,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ibi.TimesheetDiary.Services
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ibi.TimesheetDiary.Services.Installer", "src\Ibi.TimesheetDiary.Services.Installer\Ibi.TimesheetDiary.Services.Installer.csproj", "{7DDC6B5C-327E-448D-AAF5-3A46EAEA1534}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ibi.TimesheetDiary.Data.EntityFramework.Tests", "src\Ibi.TimesheetDiary.Data.EntityFramework.Tests\Ibi.TimesheetDiary.Data.EntityFramework.Tests.csproj", "{2322CD6B-AF58-413B-90BA-2D300685C305}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ibi.TimesheetDiary.Services.Tests", "src\Ibi.TimesheetDiary.Services.Tests\Ibi.TimesheetDiary.Services.Tests.csproj", "{1DB5225A-6061-4055-9CFA-C34809BF9F9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +81,14 @@ Global
 		{7DDC6B5C-327E-448D-AAF5-3A46EAEA1534}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DDC6B5C-327E-448D-AAF5-3A46EAEA1534}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DDC6B5C-327E-448D-AAF5-3A46EAEA1534}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2322CD6B-AF58-413B-90BA-2D300685C305}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2322CD6B-AF58-413B-90BA-2D300685C305}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2322CD6B-AF58-413B-90BA-2D300685C305}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2322CD6B-AF58-413B-90BA-2D300685C305}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DB5225A-6061-4055-9CFA-C34809BF9F9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DB5225A-6061-4055-9CFA-C34809BF9F9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DB5225A-6061-4055-9CFA-C34809BF9F9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DB5225A-6061-4055-9CFA-C34809BF9F9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +108,8 @@ Global
 		{8805F33E-B41B-46DA-8D1F-76DA083326E4} = {825C336B-19F7-4CAC-AC90-A1F7368F3006}
 		{53E7D700-8BB5-4AA5-BE0B-D41E540A4022} = {825C336B-19F7-4CAC-AC90-A1F7368F3006}
 		{D9AC924A-6DD4-4181-96F1-E5B21E59313A} = {825C336B-19F7-4CAC-AC90-A1F7368F3006}
+		{1DB5225A-6061-4055-9CFA-C34809BF9F9D} = {CC3771D3-0848-4529-BDB6-3BA3FBECC3A1}
+		{2322CD6B-AF58-413B-90BA-2D300685C305} = {71DB5AA5-F81D-4067-BB9A-5EBF20F5025C}
 		{83B5AA56-7EE3-45EE-BDAA-53BA4D6AEA8A} = {CA03B5FB-9E3A-4C25-A2E9-0D9C5ADB8107}
 	EndGlobalSection
 EndGlobal

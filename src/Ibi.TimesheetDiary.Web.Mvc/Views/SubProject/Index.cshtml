@@ -35,7 +35,7 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { projectId = item.Project.ProjectId, subNumber = item.SubNumber }) |
+            @Html.ActionLink("Edit", "Edit", new { projectCode = item.Project.ProjectCode, subNumber = item.SubNumber }) |
             @Html.ActionLink("Details", "Details", new { id=item.SubProjectId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.SubProjectId })
         </td>

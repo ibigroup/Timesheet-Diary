@@ -35,7 +35,7 @@ namespace Ibi.TimesheetDiary
         /// The workstage number.
         /// </value>
         [Required]
-        public int WorkstageNumber { get; set; }
+        public string WorkstageNumber { get; set; }
 
         /// <summary>
         /// Gets or sets the name.

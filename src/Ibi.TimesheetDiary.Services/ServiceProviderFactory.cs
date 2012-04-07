@@ -9,6 +9,8 @@
 
 namespace Ibi.TimesheetDiary.Services
 {
+    using System;
+
     using Ibi.TimesheetDiary.Data;
     using Ibi.TimesheetDiary.ServiceContracts;
 
@@ -20,14 +22,20 @@ namespace Ibi.TimesheetDiary.Services
         /// <summary>
         /// Local instance of a <see cref="IDataContext"/> implementation.
         /// </summary>
-        protected readonly IDataContext DataContext;
+        public readonly IDataContext DataContext;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceProviderFactory"/> class.
         /// </summary>
         /// <param name="dataContext">The data context.</param>
+        /// <exception cref="ArgumentNullException">Throw if the data context is <c>null</c>."/></exception>
         public ServiceProviderFactory(IDataContext dataContext)
         {
+            if (dataContext == null)
+            {
+                throw new ArgumentNullException("dataContext", "Data context must not be null.");
+            }
+
             this.DataContext = dataContext;
         }
 
