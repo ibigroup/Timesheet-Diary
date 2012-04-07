@@ -32,7 +32,7 @@ namespace Ibi.TimesheetDiary.Data.EntityFramework
         /// <value>
         /// The projects.
         /// </value>
-        protected DbSet<Project> ProjectCollection { get; set; }
+        public DbSet<Project> ProjectCollection { get; set; }
 
         /// <summary>
         /// Gets or sets the sub projects.
@@ -40,7 +40,7 @@ namespace Ibi.TimesheetDiary.Data.EntityFramework
         /// <value>
         /// The sub projects.
         /// </value>
-        protected DbSet<SubProject> SubProjectCollection { get; set; }
+        public DbSet<SubProject> SubProjectCollection { get; set; }
 
         /// <summary>
         /// Gets or sets the workstage <see cref="DbSet"/>.
@@ -48,7 +48,7 @@ namespace Ibi.TimesheetDiary.Data.EntityFramework
         /// <value>
         /// The workstage <see cref="DbSet"/>.
         /// </value>
-        protected DbSet<Workstage> WorkstageCollection { get; set; } 
+        public DbSet<Workstage> WorkstageCollection { get; set; } 
 
         #region Implementation of IDataContext
 
