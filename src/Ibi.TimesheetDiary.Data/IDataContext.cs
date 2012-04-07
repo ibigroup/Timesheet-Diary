@@ -22,14 +22,42 @@ namespace Ibi.TimesheetDiary.Data
         IQueryable<Project> Projects { get; }
 
         /// <summary>
+        /// Gets the sub projects.
+        /// </summary>
+        IQueryable<SubProject> SubProjects { get; }
+
+        /// <summary>
+        /// Gets the workstages.
+        /// </summary>
+        IQueryable<Workstage> Workstages { get; } 
+
+        /// <summary>
         /// Saves the project.
         /// </summary>
         /// <param name="project">The project.</param>
-        void SaveProject(Project project);
+        void InsertProject(Project project);
 
         /// <summary>
-        /// Gets the sub projects.
+        /// Updates the project.
         /// </summary>
-        IQueryable<SubProject> SubProjects { get; }  
+        /// <param name="project">The project.</param>
+        void UpdateProject(Project project);
+
+        /// <summary>
+        /// Saves the sub project.
+        /// </summary>
+        /// <param name="subProject">The sub project.</param>
+        void InsertSubProject(SubProject subProject);
+
+        /// <summary>
+        /// Updates the sub project.
+        /// </summary>
+        /// <param name="subProject">The sub project.</param>
+        void UpdateSubProject(SubProject subProject);
+
+        /// <summary>
+        /// Saves the changes.
+        /// </summary>
+        void SaveChanges();
     }
 }

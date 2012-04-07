@@ -32,7 +32,7 @@ namespace Ibi.TimesheetDiary.Data.EntityFramework
         /// <value>
         /// The projects.
         /// </value>
-        public DbSet<Project> ProjectCollection { get; set; }
+        protected DbSet<Project> ProjectCollection { get; set; }
 
         /// <summary>
         /// Gets or sets the sub projects.
@@ -40,7 +40,15 @@ namespace Ibi.TimesheetDiary.Data.EntityFramework
         /// <value>
         /// The sub projects.
         /// </value>
-        public DbSet<SubProject> SubProjectCollection { get; set; }
+        protected DbSet<SubProject> SubProjectCollection { get; set; }
+
+        /// <summary>
+        /// Gets or sets the workstage <see cref="DbSet"/>.
+        /// </summary>
+        /// <value>
+        /// The workstage <see cref="DbSet"/>.
+        /// </value>
+        protected DbSet<Workstage> WorkstageCollection { get; set; } 
 
         #region Implementation of IDataContext
 
@@ -53,25 +61,64 @@ namespace Ibi.TimesheetDiary.Data.EntityFramework
         }
 
         /// <summary>
-        /// Saves the project.
-        /// </summary>
-        /// <param name="project">The project.</param>
-        public void SaveProject(Project project)
-        {
-            if (project.ProjectId == Guid.Empty)
-            {
-                this.ProjectCollection.Add(project);
-            }
-
-            this.SaveChanges();
-        }
-
-        /// <summary>
         /// Gets the sub projects.
         /// </summary>
         public IQueryable<SubProject> SubProjects
         {
             get { return this.SubProjectCollection; }
+        }
+
+        /// <summary>
+        /// Gets the workstages.
+        /// </summary>
+        public IQueryable<Workstage> Workstages
+        {
+            get
+            {
+                return this.WorkstageCollection;
+            }
+        }
+
+        /// <summary>
+        /// Saves the project.
+        /// </summary>
+        /// <param name="project">The project.</param>
+        public void InsertProject(Project project)
+        {
+            this.ProjectCollection.Add(project);
+        }
+
+        /// <summary>
+        /// Updates the project.
+        /// </summary>
+        /// <param name="project">The project.</param>
+        public void UpdateProject(Project project)
+        {
+        }
+
+        /// <summary>
+        /// Saves the sub project.
+        /// </summary>
+        /// <param name="subProject">The sub project.</param>
+        public void InsertSubProject(SubProject subProject)
+        {
+            this.SubProjectCollection.Add(subProject);
+        }
+
+        /// <summary>
+        /// Updates the sub project.
+        /// </summary>
+        /// <param name="subProject">The sub project.</param>
+        public void UpdateSubProject(SubProject subProject)
+        {
+        }
+
+        /// <summary>
+        /// Saves the changes.
+        /// </summary>
+        public new void SaveChanges()
+        {
+            base.SaveChanges();
         }
 
         #endregion

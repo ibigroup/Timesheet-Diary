@@ -66,8 +66,10 @@
     <Reference Include="System.DirectoryServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\SubProjectController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -141,10 +143,15 @@
     <Content Include="Views\Web.config" />
     <Content Include="packages.config" />
     <None Include="readme.txt" />
-    <Content Include="Views\Projects\Index.cshtml" />
-    <Content Include="Views\Projects\Details.cshtml" />
-    <Content Include="Views\Projects\Create.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\Project\Details.cshtml" />
+    <Content Include="Views\Project\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Project.cshtml" />
+    <Content Include="Views\Project\Edit.cshtml" />
+    <Content Include="Views\SubProject\Index.cshtml" />
+    <Content Include="Views\SubProject\Create.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SubProject.cshtml" />
+    <Content Include="Views\SubProject\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -155,17 +162,17 @@
       <Project>{015F7FB4-66A6-4549-A76D-6C825FBC6809}</Project>
       <Name>Ibi.TimesheetDiary.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Ibi.TimesheetDiary.Data.EntityFramework\Ibi.TimesheetDiary.Data.EntityFramework.csproj">
-      <Project>{8805F33E-B41B-46DA-8D1F-76DA083326E4}</Project>
-      <Name>Ibi.TimesheetDiary.Data.EntityFramework</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Ibi.TimesheetDiary.Data.Installer\Ibi.TimesheetDiary.Data.Installer.csproj">
       <Project>{D9AC924A-6DD4-4181-96F1-E5B21E59313A}</Project>
       <Name>Ibi.TimesheetDiary.Data.Installer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Ibi.TimesheetDiary.Data\Ibi.TimesheetDiary.Data.csproj">
-      <Project>{53E7D700-8BB5-4AA5-BE0B-D41E540A4022}</Project>
-      <Name>Ibi.TimesheetDiary.Data</Name>
+    <ProjectReference Include="..\Ibi.TimesheetDiary.ServiceContracts\Ibi.TimesheetDiary.ServiceContracts.csproj">
+      <Project>{82EF0C42-AFAB-4865-A9F9-8A2FE17F4AC5}</Project>
+      <Name>Ibi.TimesheetDiary.ServiceContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ibi.TimesheetDiary.Services.Installer\Ibi.TimesheetDiary.Services.Installer.csproj">
+      <Project>{7DDC6B5C-327E-448D-AAF5-3A46EAEA1534}</Project>
+      <Name>Ibi.TimesheetDiary.Services.Installer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
