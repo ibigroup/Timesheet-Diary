@@ -114,6 +114,23 @@ namespace Ibi.TimesheetDiary.Data.EntityFramework
         }
 
         /// <summary>
+        /// Inserts the workstage.
+        /// </summary>
+        /// <param name="workstage">The workstage.</param>
+        public void InsertWorkstage(Workstage workstage)
+        {
+            this.WorkstageCollection.Add(workstage);
+        }
+
+        /// <summary>
+        /// Updates the workstage.
+        /// </summary>
+        /// <param name="workstage">The workstage.</param>
+        public void UpdateWorkstage(Workstage workstage)
+        {
+        }
+
+        /// <summary>
         /// Saves the changes.
         /// </summary>
         public new void SaveChanges()

@@ -56,6 +56,18 @@ namespace Ibi.TimesheetDiary.Data
         void UpdateSubProject(SubProject subProject);
 
         /// <summary>
+        /// Inserts the workstage.
+        /// </summary>
+        /// <param name="workstage">The workstage.</param>
+        void InsertWorkstage(Workstage workstage);
+
+        /// <summary>
+        /// Updates the workstage.
+        /// </summary>
+        /// <param name="workstage">The workstage.</param>
+        void UpdateWorkstage(Workstage workstage);
+
+        /// <summary>
         /// Saves the changes.
         /// </summary>
         void SaveChanges();

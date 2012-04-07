@@ -221,6 +221,136 @@ namespace Ibi.TimesheetDiary.Services.Tests
             this.mockDataContext.Verify();
         }
 
+        /// <summary>
+        /// Tests that <see cref="ProjectServices.SaveSubProject"/> throws a
+        /// <see cref="ArgumentNullException"/> if the <see cref="SubProject"/> to
+        /// save is <c>null</c>.
+        /// </summary>
+        [Test]
+        public void SaveSubProjectThrowsAnExceptionIfTheSubProjectIsNull()
+        {
+            // Arrange
+            var service = new ProjectServices(this.dataContext);
+
+            this.mockDataContext.Setup(x => x.InsertSubProject(It.IsAny<SubProject>())).Callback(
+                () => Assert.Fail("Insert should not be called."));
+
+            this.mockDataContext.Setup(x => x.UpdateSubProject(It.IsAny<SubProject>())).Callback(
+                () => Assert.Fail("Update should not be called."));
+
+            this.mockDataContext.Setup(x => x.SaveChanges()).Callback(
+                () => Assert.Fail("Save should not be called."));
+
+            // Assert
+            Assert.Throws<ArgumentNullException>(() => service.SaveSubProject(null));
+        }
+
+        /// <summary>
+        /// Tests that <see cref="ProjectServices.SaveSubProject"/> calls an
+        /// insert on the data context is the <see cref="SubProject"/> to save is new.
+        /// </summary>
+        [Test]
+        public void SaveSubProjectInsertsSubProjectIfItIsNew()
+        {
+            // Arrange
+            var subProjectToSave = new SubProject();
+            var service = new ProjectServices(this.dataContext);
+
+            this.mockDataContext.Setup(x => x.InsertSubProject(subProjectToSave))
+                .Verifiable();
+
+            this.mockDataContext.Setup(x => x.UpdateSubProject(It.IsAny<SubProject>())).Callback(
+                () => Assert.Fail("Update should not be called."));
+
+            this.mockDataContext.Setup(x => x.SaveChanges()).Verifiable();
+
+            // Act
+            service.SaveSubProject(subProjectToSave);
+
+            // Assert
+            this.mockDataContext.Verify();
+        }
+
+        /// <summary>
+        /// Tests that <see cref="ProjectServices.SaveSubProject"/> calls an
+        /// update on the data context is the <see cref="SubProject"/> to save is not new.
+        /// </summary>
+        [Test]
+        public void SaveSubProjectIUpdatesSubProjectIfItIsNotNew()
+        {
+            // Arrange
+            var subProjectToSave = new SubProject { SubProjectId = Guid.NewGuid() };
+            var service = new ProjectServices(this.dataContext);
+
+            this.mockDataContext.Setup(x => x.InsertSubProject(It.IsAny<SubProject>())).Callback(
+                () => Assert.Fail("Insert should not be called."));
+
+            this.mockDataContext.Setup(x => x.UpdateSubProject(subProjectToSave))
+                .Verifiable();
+
+            this.mockDataContext.Setup(x => x.SaveChanges()).Verifiable();
+
+            // Act
+            service.SaveSubProject(subProjectToSave);
+
+            // Assert
+            this.mockDataContext.Verify();
+        }
+
+        /// <summary>
+        /// Tests that <see cref="ProjectServices.GetSubProjectByCodeAndSubNumber"/> returns <c>null</c>
+        /// if no matching items are found in the data store.
+        /// </summary>
+        [Test]
+        public void GetSubProjectByCodeAndSubNumberReturnsNullIfNoMatchingItemsAreFound()
+        {
+            // Arrange
+            var subProjects = new List<SubProject>().AsQueryable();
+            this.mockDataContext.SetupGet(x => x.SubProjects).Returns(subProjects).Verifiable();
+
+            var service = new ProjectServices(this.dataContext);
+
+            // Act
+            var project = service.GetSubProjectByCodeAndSubNumber("a code", 1);
+
+            // Assert
+            Assert.IsNull(project);
+            this.mockDataContext.Verify();
+        }
+
+        /// <summary>
+        /// Tests that <see cref="ProjectServices.GetSubProjectByCodeAndSubNumber"/> returns the
+        /// correct item from the data store.
+        /// </summary>
+        [Test]
+        public void GetSubProjectByCodeAndSubNumberReturnsTheCorrectItem()
+        {
+            // Arrange
+            const string ProjectCodeToFind = "a project code";
+            const int SubProjectNumberToFind = 1;
+            var items = new[]
+                {
+                    new SubProject { SubNumber = SubProjectNumberToFind, Project = new Project { ProjectCode = ProjectCodeToFind } },
+                    new SubProject { SubNumber = SubProjectNumberToFind, Project = new Project { ProjectCode = "a different code" } },
+                    new SubProject { SubNumber = 100, Project = new Project { ProjectCode = ProjectCodeToFind } },
+                    new SubProject { SubNumber = 100, Project = new Project { ProjectCode = "a different code" } },
+                };
+
+            var subProjects = new List<SubProject>(items).AsQueryable();
+            this.mockDataContext.SetupGet(x => x.SubProjects).Returns(subProjects).Verifiable();
+
+            var service = new ProjectServices(this.dataContext);
+
+            // Act
+            var subProject = service.GetSubProjectByCodeAndSubNumber(ProjectCodeToFind, SubProjectNumberToFind);
+
+            // Assert
+            Assert.IsNotNull(subProject);
+            Assert.AreEqual(ProjectCodeToFind, subProject.Project.ProjectCode);
+            Assert.AreEqual(SubProjectNumberToFind, subProject.SubNumber);
+            this.mockDataContext.Verify();
+        }
+
         #endregion
 
         #region Workstage Tests
@@ -243,6 +373,82 @@ namespace Ibi.TimesheetDiary.Services.Tests
 
             // Assert
             Assert.AreEqual(workstages, workstagesFromService);
+            this.mockDataContext.Verify();
+        }
+
+        /// <summary>
+        /// Tests that <see cref="ProjectServices.SaveWorkstage"/> throws a
+        /// <see cref="ArgumentNullException"/> if the <see cref="Workstage"/> to
+        /// save is <c>null</c>.
+        /// </summary>
+        [Test]
+        public void SaveWorkstageThrowsAnExceptionIfTheWorkstageIsNull()
+        {
+            // Arrange
+            var service = new ProjectServices(this.dataContext);
+
+            this.mockDataContext.Setup(x => x.InsertWorkstage(It.IsAny<Workstage>())).Callback(
+                () => Assert.Fail("Insert should not be called."));
+
+            this.mockDataContext.Setup(x => x.UpdateWorkstage(It.IsAny<Workstage>())).Callback(
+                () => Assert.Fail("Update should not be called."));
+
+            this.mockDataContext.Setup(x => x.SaveChanges()).Callback(
+                () => Assert.Fail("Save should not be called."));
+
+            // Assert
+            Assert.Throws<ArgumentNullException>(() => service.SaveWorkstage(null));
+        }
+
+        /// <summary>
+        /// Tests that <see cref="ProjectServices.SaveWorkstage"/> calls an
+        /// insert on the data context is the <see cref="Workstage"/> to save is new.
+        /// </summary>
+        [Test]
+        public void SaveWorkstageInsertsWorkstageIfItIsNew()
+        {
+            // Arrange
+            var workstageToSave = new Workstage();
+            var service = new ProjectServices(this.dataContext);
+
+            this.mockDataContext.Setup(x => x.InsertWorkstage(workstageToSave))
+                .Verifiable();
+
+            this.mockDataContext.Setup(x => x.UpdateWorkstage(It.IsAny<Workstage>())).Callback(
+                () => Assert.Fail("Update should not be called."));
+
+            this.mockDataContext.Setup(x => x.SaveChanges()).Verifiable();
+
+            // Act
+            service.SaveWorkstage(workstageToSave);
+
+            // Assert
+            this.mockDataContext.Verify();
+        }
+
+        /// <summary>
+        /// Tests that <see cref="ProjectServices.SaveWorkstage"/> calls an
+        /// update on the data context is the <see cref="Workstage"/> to save is not new.
+        /// </summary>
+        [Test]
+        public void SaveWorkstageIUpdatesWorkstageIfItIsNotNew()
+        {
+            // Arrange
+            var workstageToSave = new Workstage { WorkstageId = Guid.NewGuid() };
+            var service = new ProjectServices(this.dataContext);
+
+            this.mockDataContext.Setup(x => x.InsertWorkstage(It.IsAny<Workstage>())).Callback(
+                () => Assert.Fail("Insert should not be called."));
+
+            this.mockDataContext.Setup(x => x.UpdateWorkstage(workstageToSave))
+                .Verifiable();
+
+            this.mockDataContext.Setup(x => x.SaveChanges()).Verifiable();
+
+            // Act
+            service.SaveWorkstage(workstageToSave);
+
+            // Assert
             this.mockDataContext.Verify();
         }
 

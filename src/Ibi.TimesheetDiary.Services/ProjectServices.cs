@@ -130,6 +130,11 @@ namespace Ibi.TimesheetDiary.Services
         /// <param name="subProject">The sub project.</param>
         public void SaveSubProject(SubProject subProject)
         {
+            if (subProject == null)
+            {
+                throw new ArgumentNullException("subProject", "Cannot save null sub project.");
+            }
+
             if (subProject.SubProjectId == Guid.Empty)
             {
                 this.DataContext.InsertSubProject(subProject);
@@ -157,7 +162,21 @@ namespace Ibi.TimesheetDiary.Services
         /// <param name="workstage">The workstage.</param>
         public void SaveWorkstage(Workstage workstage)
         {
-            throw new System.NotImplementedException();
+            if (workstage == null)
+            {
+                throw new ArgumentNullException("workstage", "Cannot save null workstage.");
+            }
+
+            if (workstage.WorkstageId == Guid.Empty)
+            {
+                this.DataContext.InsertWorkstage(workstage);
+            }
+            else
+            {
+                this.DataContext.UpdateWorkstage(workstage);
+            }
+
+            this.DataContext.SaveChanges();
         }
 
         /// <summary>
