@@ -82,6 +82,11 @@ namespace Ibi.TimesheetDiary.Services
         /// <param name="project">The project.</param>
         public void SaveProject(Project project)
         {
+            if (project == null)
+            {
+            throw new ArgumentNullException("project", "Cannot save a null project.");    
+            }
+
             if (project.ProjectId == Guid.Empty)
             {
                 this.DataContext.InsertProject(project);
